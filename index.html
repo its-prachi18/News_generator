@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI News Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(162, 255, 0, 0.1);
+    }
+    button {
+      background: #ae00ff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #6800b3;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    input {
+      padding: 10px;
+      width: 80%;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI News Generator</h1>
+    <input type="text" id="newsTopic" placeholder="Enter news topic">
+    <button onclick="getNews()">Generate News</button>
+    <div id="result"></div>
+  </div>
+  
+  <script>
+    const API_KEY = "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";
+
+    async function getNews() {
+      const topic = document.getElementById('newsTopic').value;
+      if (!topic) {
+        alert("Please enter a topic!");
+        return;
+      }
+      
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + API_KEY,
+        },
+        body: JSON.stringify({
+          model: "llama-3.3-70b-versatile",
+          messages: [{ role: "user", content: `Generate a news about ${topic} only in div tag with good css` }],
+        }),
+      });
+      
+      const body = await response.json();
+      console.log(body.choices[0].message.content);
+      
+      let newDiv = document.createElement('div');
+      newDiv.innerHTML = body.choices[0].message.content;
+      document.getElementById('result').innerHTML = ''; // Clear previous content
+      document.getElementById('result').appendChild(newDiv);
+    }
+  </script>
+</body>
+</html>
