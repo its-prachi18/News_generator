@@ -16,7 +16,7 @@ A sleek and modern web app that uses AI to generate news based on any topic you 
 
 ## 📸 Preview
 
-![Preview of AI News Generator UI](https://your-screenshot-link.com)
+![Preview of AI News Generator UI](Screenshot 1.png)
 
 ## 🛠️ Tech Stack
 
