@@ -12,7 +12,7 @@ A sleek and modern web app that uses AI to generate news based on any topic you 
 
 ## 🚀 Live Demo
 
-> Coming Soon on GitHub Pages or Vercel (optional)
+> https://its-prachi18.github.io/News_generator/
 
 ## 📸 Preview
 
